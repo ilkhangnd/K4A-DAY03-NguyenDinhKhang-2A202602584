@@ -1,8 +1,8 @@
 # 📊 BÁO CÁO THU HOẠCH NGHIỆM THU BÀI LAB 3 (BƯỚC 3 — SUBMISSION ARTIFACT)
 
-> **Họ và Tên Học viên:** [Điền Họ và Tên]  
-> **Mã Sinh Viên / Mã Học viên:** [Điền MSSV]  
-> **Chủ đề Lựa chọn:** [Điền tên chủ đề đã chọn từ docs/DANH_SACH_DE_TAI.md hoặc Đề tài Mở]  
+> **Họ và Tên Học viên:** Nguyễn Đình Khang<br>
+> **Mã Sinh Viên / Mã Học viên:** 2A202602584<br>
+> **Chủ đề Lựa chọn:** Trợ lý Học vụ và Tra cứu Lịch thi VinUni: Tra cứu điểm GPA, lịch thi và đặt lịch tư vấn học vụ với Cố vấn.
 
 ---
 
@@ -10,11 +10,11 @@
 
 | Tiêu chí Đánh giá | Mức độ (1 - 5) | Giải trình chi tiết lý do chọn điểm |
 | :--- | :---: | :--- |
-| **1. Multi-step Reasoning** | / 5 | Bài toán có yêu cầu chia nhỏ nhiều bước suy luận nối tiếp nhau không? |
-| **2. Tool Interaction** | / 5 | Hệ thống có cần kết nối với MCP Server / Cơ sở dữ liệu bên ngoài không? |
-| **3. Dynamic Decision** | / 5 | Bước tiếp theo có phụ thuộc vào kết quả quan sát bước trước không? |
-| **4. Long Horizon Goal** | / 5 | Hệ thống có phải giữ mục tiêu xuyên suốt qua nhiều lượt xử lý không? |
-| **TỔNG ĐIỂM AGENTIC FIT** | **/ 20** | *Nếu tổng điểm > 12/20: Bài toán rất phù hợp triển khai Agentic System.* |
+| **1. Multi-step Reasoning** | 5 / 5 | Với yêu cầu đặt lịch qua cố vấn chưa biết, Agent phải tra cứu hồ sơ, xác định đúng cố vấn, rồi mới đặt lịch và xác nhận kết quả. |
+| **2. Tool Interaction** | 5 / 5 | GPA, lịch thi và trạng thái lịch hẹn là dữ liệu nghiệp vụ động; Agent cần gọi MCP Server thay vì suy đoán. |
+| **3. Dynamic Decision** | 5 / 5 | Tên cố vấn và việc có thể đặt lịch hay không phụ thuộc trực tiếp vào Observation của lần tra cứu sinh viên trước đó. |
+| **4. Long Horizon Goal** | 4 / 5 | Agent phải giữ xuyên suốt mã sinh viên, mục đích tư vấn và thời điểm hẹn qua nhiều bước trong một phiên xử lý. |
+| **TỔNG ĐIỂM AGENTIC FIT** | **19 / 20** | *Bài toán rất phù hợp triển khai Agentic System vì vượt ngưỡng 12/20.* |
 
 ---
 
