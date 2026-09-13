@@ -146,3 +146,22 @@ def dispatch_tool_call(tool_name: str, arguments: Dict[str, Any]) -> str:
         except Exception as e:
             return json.dumps({"status": "EXECUTION_ERROR", "error": str(e)}, ensure_ascii=False)
     return json.dumps({"status": "UNKNOWN_TOOL", "error": f"Tool '{tool_name}' không tồn tại!"}, ensure_ascii=False)
+
+if __name__ == "__main__":
+    print(
+        f"✅ [TOOLS CHECK]: Đã đăng ký thành công "
+        f"{len(TOOLS_SCHEMA)} Native Tools trong TOOLS_SCHEMA!"
+    )
+
+    result = json.loads(
+        dispatch_tool_call("academic_query", {"student_id": "SV2026001"})
+    )
+
+    if result.get("status") == "SUCCESS":
+        full_name = result["data"]["full_name"]
+        print(
+            f"🧪 Kết quả gọi thử academic_query: "
+            f"Status SUCCESS (Sinh viên {full_name})"
+        )
+    else:
+        print(f"❌ [TOOLS CHECK]: {result}")
