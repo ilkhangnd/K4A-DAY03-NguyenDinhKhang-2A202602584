@@ -60,7 +60,7 @@ Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.js
         ]
       }
     },
-    "latency_ms": 531.5
+    "latency_ms": 1049.64
   },
   {
     "step": 2,
@@ -80,15 +80,15 @@ Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.js
       "advisor": "TS. Lê Thị B",
       "message": "Đặt lịch thành công cho sinh viên SV2026002 với TS. Lê Thị B vào lúc 09:00 18/09/2026."
     },
-    "latency_ms": 502.2
+    "latency_ms": 1070.29
   },
   {
     "step": 3,
     "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Observation xác nhận lịch hẹn đã được tạo thành công.",
-    "output": "Đặt lịch thành công cho sinh viên SV2026002 với TS. Lê Thị B vào lúc 09:00 18/09/2026.",
-    "latency_ms": 523.46
+    "thought": "OpenAI phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Bạn đã đặt lịch thành công với cố vấn học tập TS. Lê Thị B vào lúc 09:00 ngày 18/09/2026.",
+    "latency_ms": 1581.88
   }
 ]
 ```
@@ -99,7 +99,7 @@ Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.js
 
 - [X] Đã điền API Key thật trong `.env` và xác nhận Agent chạy mượt mà trên LLM API thật (Gemini/OpenAI).
 - **Tổng số Test Cases đã chạy thành công:** 5 / 5 test cases.
-- **Số lượt gọi Tool qua MCP Server chính xác:** ___ lượt.
+- **Số lượt gọi Tool qua MCP Server chính xác:** 5 lượt.
 - **Kết quả đẩy Repo nộp bài:** [X] Đã Commit và Push mã nguồn thành công lên GitHub cá nhân.
 
 ---

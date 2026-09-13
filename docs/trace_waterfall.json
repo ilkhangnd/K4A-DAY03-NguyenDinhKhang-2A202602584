@@ -1,10 +1,168 @@
 [
   {
     "step": 1,
-    "query": "tôi muốn biết sv2026001 là ai",
+    "query": "Chào bạn, bạn có thể giới thiệu quy chế học vụ cơ bản của Đại học VinUni không?",
     "action_type": "FINAL_ANSWER",
-    "thought": "Câu hỏi chung về quy chế học vụ, trả lời trực tiếp không cần gọi Tool.",
-    "output": "[Mock Agent Response]: Xin chào! Quy chế học vụ VinUni yêu cầu sinh viên tích lũy tối thiểu 120 tín chỉ và duy trì GPA trên 2.0 để tốt nghiệp.",
-    "latency_ms": 1231.5
+    "thought": "OpenAI phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Quy chế học vụ cơ bản của Đại học VinUni thường bao gồm các nội dung chính như sau:\n\n1. **Đăng ký học phần:** Sinh viên phải thực hiện đăng ký học phần theo quy định của trường. Thời gian đăng ký và các quy định liên quan sẽ được thông báo cụ thể từng học kỳ.\n\n2. **Điều kiện tốt nghiêp:** Sinh viên cần đáp ứng các yêu cầu về học tập, bao gồm số tín chỉ bắt buộc, điểm trung bình GPA và các điều kiện khác theo quy định.\n\n3. **Quy định về điểm số:** Điểm số thường được chia thành các thang điểm từ A đến F, trong đó A là điểm cao nhất. Các quy định về đánh giá và tính điểm sẽ được nêu rõ trong từng khóa học.\n\n4. **Cách xử lý khi vi phạm:** Các hình thức kỷ luật có thể áp dụng khi sinh viên vi phạm quy định như gian lận trong thi cử, vi phạm nội quy học tập,...\n\n5. **Chương trình học:** Nội dung chương trình và khung kế hoạch đào tạo sẽ được công bố cho từng chuyên ngành, bao gồm cả các môn học bắt buộc và tự chọn.\n\n6. **Hỗ trợ học vụ:** Sinh viên sẽ được hỗ trợ từ các cố vấn học tập và bộ phận quản lý học vụ trong quá trình học tập.\n\nNếu bạn cần thông tin chi tiết hơn về từng mục hoặc có câu hỏi cụ thể liên quan đến quy chế học vụ, hãy cho tôi biết!",
+    "latency_ms": 3765.95
+  },
+  {
+    "step": 1,
+    "query": "Hãy tra cứu GPA và lịch thi của sinh viên SV2026001.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "academic_query",
+    "arguments": {
+      "student_id": "SV2026001"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "student_id": "SV2026001",
+      "data": {
+        "full_name": "Nguyễn Văn An",
+        "class": "AI-K4",
+        "gpa": 3.85,
+        "email": "an.nv@vinuni.edu.vn",
+        "status": "Đang học",
+        "advisor": "PGS.TS Nguyễn Văn A",
+        "exam_schedule": [
+          {
+            "course_code": "AISC201",
+            "course_name": "Machine Learning",
+            "datetime": "08:00 20/09/2026",
+            "room": "C202"
+          },
+          {
+            "course_code": "MATH205",
+            "course_name": "Xác suất thống kê",
+            "datetime": "13:30 24/09/2026",
+            "room": "A105"
+          }
+        ]
+      }
+    },
+    "latency_ms": 1192.18
+  },
+  {
+    "step": 2,
+    "query": "Hãy tra cứu GPA và lịch thi của sinh viên SV2026001.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "OpenAI phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Sinh viên Nguyễn Văn An (Mã sinh viên: SV2026001) có GPA là 3.85. \n\nLịch thi của sinh viên như sau:\n1. Môn: Machine Learning (AISC201)\n   - Thời gian: 08:00 ngày 20/09/2026\n   - Phòng: C202\n\n2. Môn: Xác suất thống kê (MATH205)\n   - Thời gian: 13:30 ngày 24/09/2026\n   - Phòng: A105\n\nNếu có thêm câu hỏi nào khác, vui lòng cho biết!",
+    "latency_ms": 1925.58
+  },
+  {
+    "step": 1,
+    "query": "Đặt lịch tư vấn học vụ cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào 14:00 ngày 15/09/2026.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "schedule_appointment",
+    "arguments": {
+      "student_id": "SV2026001",
+      "datetime_str": "14:00 15/09/2026",
+      "advisor_name": "PGS.TS Nguyễn Văn A"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "booking_id": "BK-SV2026001-202609",
+      "student_id": "SV2026001",
+      "datetime": "14:00 15/09/2026",
+      "advisor": "PGS.TS Nguyễn Văn A",
+      "message": "Đặt lịch thành công cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào lúc 14:00 15/09/2026."
+    },
+    "latency_ms": 1063.47
+  },
+  {
+    "step": 2,
+    "query": "Đặt lịch tư vấn học vụ cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào 14:00 ngày 15/09/2026.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "OpenAI phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Đặt lịch thành công cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào lúc 14:00 ngày 15/09/2026.",
+    "latency_ms": 1449.03
+  },
+  {
+    "step": 1,
+    "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "academic_query",
+    "arguments": {
+      "student_id": "SV2026002"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "student_id": "SV2026002",
+      "data": {
+        "full_name": "Trần Thị Bình",
+        "class": "AI-K4",
+        "gpa": 3.6,
+        "email": "binh.tt@vinuni.edu.vn",
+        "status": "Đang học",
+        "advisor": "TS. Lê Thị B",
+        "exam_schedule": [
+          {
+            "course_code": "AISC201",
+            "course_name": "Machine Learning",
+            "datetime": "08:00 20/09/2026",
+            "room": "C202"
+          },
+          {
+            "course_code": "DSCI210",
+            "course_name": "Data Visualization",
+            "datetime": "09:30 26/09/2026",
+            "room": "B304"
+          }
+        ]
+      }
+    },
+    "latency_ms": 1049.64
+  },
+  {
+    "step": 2,
+    "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "schedule_appointment",
+    "arguments": {
+      "student_id": "SV2026002",
+      "datetime_str": "09:00 18/09/2026",
+      "advisor_name": "TS. Lê Thị B"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "booking_id": "BK-SV2026002-202609",
+      "student_id": "SV2026002",
+      "datetime": "09:00 18/09/2026",
+      "advisor": "TS. Lê Thị B",
+      "message": "Đặt lịch thành công cho sinh viên SV2026002 với TS. Lê Thị B vào lúc 09:00 18/09/2026."
+    },
+    "latency_ms": 1070.29
+  },
+  {
+    "step": 3,
+    "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "OpenAI phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Bạn đã đặt lịch thành công với cố vấn học tập TS. Lê Thị B vào lúc 09:00 ngày 18/09/2026.",
+    "latency_ms": 1581.88
+  },
+  {
+    "step": 1,
+    "query": "Hãy tra cứu GPA và lịch thi của sinh viên SV9999999.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "academic_query",
+    "arguments": {
+      "student_id": "SV9999999"
+    },
+    "observation": {
+      "status": "NOT_FOUND",
+      "message": "Không tìm thấy dữ liệu sinh viên có mã 'SV9999999'"
+    },
+    "latency_ms": 1046.9
+  },
+  {
+    "step": 2,
+    "query": "Hãy tra cứu GPA và lịch thi của sinh viên SV9999999.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "Dừng xử lý vì Observation không thành công.",
+    "output": "Không tìm thấy dữ liệu sinh viên có mã 'SV9999999'",
+    "latency_ms": 0.0
   }
 ]
