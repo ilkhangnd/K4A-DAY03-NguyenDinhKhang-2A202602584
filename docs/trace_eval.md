@@ -10,11 +10,11 @@
 
 | Tiêu chí Đánh giá | Mức độ (1 - 5) | Giải trình chi tiết lý do chọn điểm |
 | :--- | :---: | :--- |
-| **1. Multi-step Reasoning** | 5 / 5 | Với yêu cầu đặt lịch qua cố vấn chưa biết, Agent phải tra cứu hồ sơ, xác định đúng cố vấn, rồi mới đặt lịch và xác nhận kết quả. |
-| **2. Tool Interaction** | 5 / 5 | GPA, lịch thi và trạng thái lịch hẹn là dữ liệu nghiệp vụ động; Agent cần gọi MCP Server thay vì suy đoán. |
-| **3. Dynamic Decision** | 5 / 5 | Tên cố vấn và việc có thể đặt lịch hay không phụ thuộc trực tiếp vào Observation của lần tra cứu sinh viên trước đó. |
-| **4. Long Horizon Goal** | 4 / 5 | Agent phải giữ xuyên suốt mã sinh viên, mục đích tư vấn và thời điểm hẹn qua nhiều bước trong một phiên xử lý. |
-| **TỔNG ĐIỂM AGENTIC FIT** | **19 / 20** | *Bài toán rất phù hợp triển khai Agentic System vì vượt ngưỡng 12/20.* |
+| **1. Multi-step Reasoning** | 4 / 5 | Với yêu cầu "Tra cứu cố vấn của sinh viên có MSSV là SV2026002 rồi đặt lịch với đúng cố vấn đó”, Agent cần thực hiện các bước liên tiếp: Tra cứu hồ sơ, lấy tên cố vấn từ kết quả và dùng thông tin đó để đặt lịch. Tuy nhiên, quy trình này vẫn tương đối rõ ràng, ít nhánh xử lý và chưa cần lập kế hoạch phức tạp. |
+| **2. Tool Interaction** | 4 / 5 | GPA, lịch thi, cố vấn học tập và trạng thái lịch hẹn là dữ liệu nghiệp vụ cần lấy từ hệ thống học vụ. Agent cần gọi MCP Server để tra cứu và đặt lịch thay vì tự tạo dữ liệu. Tuy vậy, bài toán hiện chỉ dùng số lượng công cụ giới hạn. |
+| **3. Dynamic Decision** | 4 / 5 | Bước tiếp theo phụ thuộc vào Observation: Nếu mã sinh viên không tồn tại thì Agent dừng và báo lỗi; nếu tồn tại thì lấy cố vấn tương ứng rồi đặt lịch. Đây là quyết định dựa trên dữ liệu thực tế, nhưng số tình huống rẽ nhánh chưa nhiều. |
+| **4. Long Horizon Goal** | 3 / 5 | Trong một phiên xử lý, Agent cần giữ nhất quán mã sinh viên, mục tiêu tư vấn, thời gian hẹn và cố vấn. Tuy nhiên, hệ thống chưa có bộ nhớ dài hạn giữa nhiều phiên hoặc khả năng theo dõi, đổi và nhắc lịch hẹn sau đó. |
+| **TỔNG ĐIỂM AGENTIC FIT** | **15 / 20** | *Đề tài phù hợp để triển khai ReAct Agent vì có dữ liệu động, cần gọi công cụ và có bước xử lý phụ thuộc vào kết quả tra cứu trước đó.* |
 
 ---
 
@@ -28,20 +28,67 @@ Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.js
 [
   {
     "step": 1,
+    "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
     "action_type": "TOOL_EXECUTION",
     "tool_name": "academic_query",
     "arguments": {
-      "student_id": "SV2026001"
+      "student_id": "SV2026002"
     },
     "observation": {
       "status": "SUCCESS",
-      "student_id": "SV2026001",
+      "student_id": "SV2026002",
       "data": {
-        "full_name": "Nguyễn Văn An",
-        "gpa": 3.85
+        "full_name": "Trần Thị Bình",
+        "class": "AI-K4",
+        "gpa": 3.6,
+        "email": "binh.tt@vinuni.edu.vn",
+        "status": "Đang học",
+        "advisor": "TS. Lê Thị B",
+        "exam_schedule": [
+          {
+            "course_code": "AISC201",
+            "course_name": "Machine Learning",
+            "datetime": "08:00 20/09/2026",
+            "room": "C202"
+          },
+          {
+            "course_code": "DSCI210",
+            "course_name": "Data Visualization",
+            "datetime": "09:30 26/09/2026",
+            "room": "B304"
+          }
+        ]
       }
     },
-    "latency_ms": 120.5
+    "latency_ms": 531.5
+  },
+  {
+    "step": 2,
+    "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "schedule_appointment",
+    "arguments": {
+      "student_id": "SV2026002",
+      "datetime_str": "09:00 18/09/2026",
+      "advisor_name": "TS. Lê Thị B"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "booking_id": "BK-SV2026002-202609",
+      "student_id": "SV2026002",
+      "datetime": "09:00 18/09/2026",
+      "advisor": "TS. Lê Thị B",
+      "message": "Đặt lịch thành công cho sinh viên SV2026002 với TS. Lê Thị B vào lúc 09:00 18/09/2026."
+    },
+    "latency_ms": 502.2
+  },
+  {
+    "step": 3,
+    "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "Observation xác nhận lịch hẹn đã được tạo thành công.",
+    "output": "Đặt lịch thành công cho sinh viên SV2026002 với TS. Lê Thị B vào lúc 09:00 18/09/2026.",
+    "latency_ms": 523.46
   }
 ]
 ```
@@ -50,10 +97,10 @@ Dán 1 đoạn trích xuất log tiêu biểu từ file `docs/trace_waterfall.js
 
 ## 3. TỔNG KẾT KẾT QUẢ NGHIỆM THU & NỘP BÀI
 
-- [ ] Đã điền API Key thật trong `.env` và xác nhận Agent chạy mượt mà trên LLM API thật (Gemini/OpenAI).
-- **Tổng số Test Cases đã chạy thành công:** ___ / 5 test cases.
+- [X] Đã điền API Key thật trong `.env` và xác nhận Agent chạy mượt mà trên LLM API thật (Gemini/OpenAI).
+- **Tổng số Test Cases đã chạy thành công:** 5 / 5 test cases.
 - **Số lượt gọi Tool qua MCP Server chính xác:** ___ lượt.
-- **Kết quả đẩy Repo nộp bài:** [ ] Đã Commit và Push mã nguồn thành công lên GitHub cá nhân.
+- **Kết quả đẩy Repo nộp bài:** [X] Đã Commit và Push mã nguồn thành công lên GitHub cá nhân.
 
 ---
 

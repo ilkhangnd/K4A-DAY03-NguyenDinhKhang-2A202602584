@@ -5,7 +5,7 @@
     "action_type": "FINAL_ANSWER",
     "thought": "Câu hỏi chung về quy chế học vụ, trả lời trực tiếp không cần gọi Tool.",
     "output": "[Mock Agent Response]: Xin chào! Quy chế học vụ VinUni yêu cầu sinh viên tích lũy tối thiểu 120 tín chỉ và duy trì GPA trên 2.0 để tốt nghiệp.",
-    "latency_ms": 0.24
+    "latency_ms": 2113.38
   },
   {
     "step": 1,
@@ -41,15 +41,15 @@
         ]
       }
     },
-    "latency_ms": 0.01
+    "latency_ms": 647.87
   },
   {
     "step": 2,
     "query": "Hãy tra cứu GPA và lịch thi của sinh viên SV2026001.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Kết quả tra cứu cho sinh viên SV2026001 (Nguyễn Văn An): Lớp AI-K4, GPA: 3.85, Email: an.nv@vinuni.edu.vn, Trạng thái: Đang học, Cố vấn: PGS.TS Nguyễn Văn A.",
-    "latency_ms": 10.0
+    "thought": "Observation đã có đủ GPA, cố vấn và lịch thi để trả lời.",
+    "output": "Sinh viên SV2026001, Nguyễn Văn An, có GPA 3.85. Cố vấn học tập: PGS.TS Nguyễn Văn A. Lịch thi: AISC201 – 08:00 20/09/2026 tại phòng C202; MATH205 – 13:30 24/09/2026 tại phòng A105.",
+    "latency_ms": 437.29
   },
   {
     "step": 1,
@@ -69,15 +69,15 @@
       "advisor": "PGS.TS Nguyễn Văn A",
       "message": "Đặt lịch thành công cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào lúc 14:00 15/09/2026."
     },
-    "latency_ms": 0.01
+    "latency_ms": 619.33
   },
   {
     "step": 2,
     "query": "Đặt lịch tư vấn học vụ cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào 14:00 ngày 15/09/2026.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
+    "thought": "Observation xác nhận lịch hẹn đã được tạo thành công.",
     "output": "Đặt lịch thành công cho sinh viên SV2026001 với PGS.TS Nguyễn Văn A vào lúc 14:00 15/09/2026.",
-    "latency_ms": 10.0
+    "latency_ms": 531.96
   },
   {
     "step": 1,
@@ -85,18 +85,18 @@
     "action_type": "TOOL_EXECUTION",
     "tool_name": "academic_query",
     "arguments": {
-      "student_id": "SV2026001"
+      "student_id": "SV2026002"
     },
     "observation": {
       "status": "SUCCESS",
-      "student_id": "SV2026001",
+      "student_id": "SV2026002",
       "data": {
-        "full_name": "Nguyễn Văn An",
+        "full_name": "Trần Thị Bình",
         "class": "AI-K4",
-        "gpa": 3.85,
-        "email": "an.nv@vinuni.edu.vn",
+        "gpa": 3.6,
+        "email": "binh.tt@vinuni.edu.vn",
         "status": "Đang học",
-        "advisor": "PGS.TS Nguyễn Văn A",
+        "advisor": "TS. Lê Thị B",
         "exam_schedule": [
           {
             "course_code": "AISC201",
@@ -105,23 +105,43 @@
             "room": "C202"
           },
           {
-            "course_code": "MATH205",
-            "course_name": "Xác suất thống kê",
-            "datetime": "13:30 24/09/2026",
-            "room": "A105"
+            "course_code": "DSCI210",
+            "course_name": "Data Visualization",
+            "datetime": "09:30 26/09/2026",
+            "room": "B304"
           }
         ]
       }
     },
-    "latency_ms": 0.01
+    "latency_ms": 531.5
   },
   {
     "step": 2,
     "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "schedule_appointment",
+    "arguments": {
+      "student_id": "SV2026002",
+      "datetime_str": "09:00 18/09/2026",
+      "advisor_name": "TS. Lê Thị B"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "booking_id": "BK-SV2026002-202609",
+      "student_id": "SV2026002",
+      "datetime": "09:00 18/09/2026",
+      "advisor": "TS. Lê Thị B",
+      "message": "Đặt lịch thành công cho sinh viên SV2026002 với TS. Lê Thị B vào lúc 09:00 18/09/2026."
+    },
+    "latency_ms": 502.2
+  },
+  {
+    "step": 3,
+    "query": "Tôi là sinh viên SV2026002. Hãy tra cứu cố vấn học tập của tôi rồi đặt lịch tư vấn với chính cố vấn đó vào 09:00 ngày 18/09/2026.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Kết quả tra cứu cho sinh viên SV2026001 (Nguyễn Văn An): Lớp AI-K4, GPA: 3.85, Email: an.nv@vinuni.edu.vn, Trạng thái: Đang học, Cố vấn: PGS.TS Nguyễn Văn A.",
-    "latency_ms": 10.0
+    "thought": "Observation xác nhận lịch hẹn đã được tạo thành công.",
+    "output": "Đặt lịch thành công cho sinh viên SV2026002 với TS. Lê Thị B vào lúc 09:00 18/09/2026.",
+    "latency_ms": 523.46
   },
   {
     "step": 1,
@@ -129,42 +149,20 @@
     "action_type": "TOOL_EXECUTION",
     "tool_name": "academic_query",
     "arguments": {
-      "student_id": "SV2026001"
+      "student_id": "SV9999999"
     },
     "observation": {
-      "status": "SUCCESS",
-      "student_id": "SV2026001",
-      "data": {
-        "full_name": "Nguyễn Văn An",
-        "class": "AI-K4",
-        "gpa": 3.85,
-        "email": "an.nv@vinuni.edu.vn",
-        "status": "Đang học",
-        "advisor": "PGS.TS Nguyễn Văn A",
-        "exam_schedule": [
-          {
-            "course_code": "AISC201",
-            "course_name": "Machine Learning",
-            "datetime": "08:00 20/09/2026",
-            "room": "C202"
-          },
-          {
-            "course_code": "MATH205",
-            "course_name": "Xác suất thống kê",
-            "datetime": "13:30 24/09/2026",
-            "room": "A105"
-          }
-        ]
-      }
+      "status": "NOT_FOUND",
+      "message": "Không tìm thấy dữ liệu sinh viên có mã 'SV9999999'"
     },
-    "latency_ms": 0.01
+    "latency_ms": 550.67
   },
   {
     "step": 2,
     "query": "Hãy tra cứu GPA và lịch thi của sinh viên SV9999999.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Kết quả tra cứu cho sinh viên SV2026001 (Nguyễn Văn An): Lớp AI-K4, GPA: 3.85, Email: an.nv@vinuni.edu.vn, Trạng thái: Đang học, Cố vấn: PGS.TS Nguyễn Văn A.",
-    "latency_ms": 10.0
+    "thought": "Dừng xử lý vì Observation không thành công.",
+    "output": "Không tìm thấy dữ liệu sinh viên có mã 'SV9999999'",
+    "latency_ms": 0.0
   }
 ]
